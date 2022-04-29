@@ -32,39 +32,44 @@ int main() {
     cin.ignore();
     database.close();
 
-    //All options still need to return to the main menu after finishing
-    if (option == 1){
-        database.open(filename, ios::app);
-        addTxt(database);
+    while (option != 16){
+        if (option == 1){   //there's a problem here in the loop that returns to the menu
+            database.open(filename, ios::app);
+            addTxt(database);
+            database.close();
+        }
+        else if (option == 2){
+            database.open(filename, ios::in);
+            displayContent(database);
+            database.close();
+        }
+        else if (option == 3){
+            database.open(filename, ios::out);
+            database.close();
+            cout << "The contents of the file has been deleted successfully!";
+            emptyFile(filename);
+        }
+        else if (option == 4){
+            database.open(filename);
+            encrypt(database, filename);
+            database.close();
+        }
+        else if (option == 5){
+            database.open(filename);
+            decrypt(database, filename);
+            database.close();
+        }
+        else {
+            cout << "Please choose a valid option!\n";
+            return main();      //needs something to handle wrong input of a different type like string
+        }
         database.close();
-    }
-    else if (option == 2){
-        database.open(filename, ios::in);
-        displayContent(database);
-        database.close();
-    }
-    else if (option == 3){
-        database.open(filename, ios::out);
-        database.close();
-        cout << "The contents of the file has been deleted successfully!";
-        emptyFile(filename);
-    }
-    else if (option == 4){
-        database.open(filename);
-        encrypt(database, filename);
-        database.close();
-    }
-    else if (option == 5){
-        database.open(filename);
-        decrypt(database, filename);
-        database.close();
-    }
-    else {
-        cout << "Please choose a valid option:\n";   //needs recursion to repeat the whole process
 
+        cout << "\nWhat else do you want to do?\n\n";
+        menu();
+        cin >> option;
     }
 
-    database.close();
 
     return 0;
 }
@@ -80,7 +85,7 @@ void menu(){
 void addTxt(fstream& file){
     //needs to work on something other than the external console and to delete the ctrl+z symbol
     string txt;
-    cout << "Enter the text you want to add to the file or ctrl + z + enter to exit: " << endl;
+    cout << "\nEnter the text you want to add to the file or ctrl + z + enter to exit: " << endl;
     getline(cin >> ws, txt, '\0');
     file << txt << endl;
 }
@@ -95,11 +100,18 @@ void displayContent(fstream& file){
 }
 
 void emptyFile(char file[151]){
-    int status = remove(file);
-    if(status==0)
-        cout<<"\nFile Deleted Successfully!";
+    char ans;
+    cout << "\nDo you want to delete the file itself? (y/n)\n";
+    cin >> ans; ans = tolower(ans);
+    if (ans == 'y'){
+        int status = remove(file);
+        if(status==0)
+            cout<<"\nFile Deleted Successfully!\n";
+        else
+            cout<<"\nError Occurred!";
+    }
     else
-        cout<<"\nError Occurred!";
+        cout << "\nThe file is empty now but not deleted!\n";
     cout<<endl;
 }
 
@@ -120,7 +132,7 @@ void encrypt(fstream& file, char filename[151]){
     file.close();
     file.open(filename, ios::out);
     file << content;
-    cout << "\nFile contents have been encrypted!";
+    cout << "\nFile contents have been encrypted!\n";
 }
 void decrypt(fstream& file, char filename[151]){
     string content;
@@ -139,5 +151,5 @@ void decrypt(fstream& file, char filename[151]){
     file.close();
     file.open(filename, ios::out);
     file << content;
-    cout << "\nFile contents have been decrypted!";
+    cout << "\nFile contents have been decrypted!\n";
 }
