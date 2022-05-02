@@ -1,7 +1,9 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <string> // getline was yelling at me, so I had to #include <string>
+
 using namespace std;
 
 void menu();
@@ -62,7 +64,7 @@ int main() {
         else {
             cout << "Please choose a valid option!\n";
             return main();      //needs something to handle wrong input of a different type like string
-        }
+        }                       // you could use char type instead (Kilany)
         database.close();
 
         cout << "\nWhat else do you want to do?\n\n";
