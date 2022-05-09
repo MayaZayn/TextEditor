@@ -181,3 +181,37 @@ void firstUpper() {
         }
     }
 }
+
+
+string takeInput() { // in case someone fancy using it
+	string input;    // just like cleanStream() ;=;
+	char chr;
+	while (true) { 
+        chr = (char)_getch();
+        if ((int)chr == 26) { // ascii of '^Z'
+            break;
+        }
+		if ((int)chr == 8) { // ascii of Backspace
+            if (input.length() < 1 || input[input.length() - 1] == '\n') { // to avoid unwanted erasing
+                continue;
+            }                            
+			cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
+                                         // and then ' ' erases the last character
+            
+            input.pop_back(); // erase from actual input
+			continue;
+        }
+        if ((int)chr == 13) {
+            cout << endl;
+            input += '\n';
+            continue;
+        }
+        input += chr;
+        cout << chr;
+	}
+	cout << endl;
+
+	return input;
+}
+
+

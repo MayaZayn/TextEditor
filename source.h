@@ -29,4 +29,7 @@ void searchWord();
 void tolower(string&);
 void allUpper();
 void firstUpper();
+
+string takeInput();
+
 #endif //MAIN_CPP_SOURCE_H
