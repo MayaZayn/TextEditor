@@ -86,6 +86,7 @@ void decrypt(){
 
 void mergeAnotherFile() {
     string filename;
+    
     cout << "Enter name of the file: ";
     cin >> filename;
     loadFileContent(filename);
@@ -103,13 +104,7 @@ void countWords() { // 100% accuracy
             nWords++;
         }
     }
-
-    // for (char chr : fileContent) { // not that accurate...
-    //     if (chr == ' ' || chr == '\n') {
-    //         nWords++;
-    //     }
-    // }
-    cout << nWords;
+    cout << "Number of words: " << nWords << endl;
 }
 
 
@@ -119,7 +114,7 @@ void countChars() {
     for (char chr : fileContent) {
         nChars++;
     }
-    cout << nChars;
+    cout << "Number of charctars: " << nChars << endl;
 }
 
 
@@ -130,14 +125,13 @@ void countLines() {
             nLines++;
         }
     }
-    cout << nLines;
+    cout << "Number of lines: " << nLines << endl;
 }
 
 
 void searchWord() { // sstream WAS NOT #includED!
    istringstream contentStream(fileContent);
    string wantedWord, word;
-   bool isFound = false;
 
    cout << "Enter a word to search for: ";
    cin >> wantedWord;
@@ -147,17 +141,12 @@ void searchWord() { // sstream WAS NOT #includED!
        contentStream >> word;
        tolower(word);
        if (wantedWord == word) {
-           isFound = true;
-           break;
+           cout << "Word was found.\n";
+           return;
        }
    }
 
-   if (isFound) {
-       cout << "Word was found.\n";
-   }
-   else {
-       cout << "Word was not found.\n";
-   }
+   cout << "Word was not found.\n";
 }
 
 void tolower(string& str) {
