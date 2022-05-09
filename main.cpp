@@ -42,7 +42,7 @@ int main() {
             decrypt();
         }
         else if (option == 11) {
-            wordcount(filename);
+            wordcount();
         }
         else if (option == 12) {
             allUpper();
