@@ -5,8 +5,8 @@ int main() {
     char filename[151];
     cout << "Please enter the name of the text file you want to open:" << endl;
     cin >> filename;
-    strcat(filename, ".txt");
-    fstream database (filename);
+    strcat_s(filename, ".txt");
+    fstream database(filename, ios::in);
     if (database.fail()){
         database.open(filename, ios::app);
         cout << "This is a new file. I have created it for you.\nWhat do you want to do today?" << endl;
