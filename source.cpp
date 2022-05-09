@@ -24,13 +24,13 @@ void loadFileContent(string filename) {
     dataSource.close();
 }
 
+
 void saveFileContent(string filename) { // This is Mahmoud's job so will leave it as it is
     fstream dataTarget;                 // it needs to ask for new filename, or same file
-    dataTarget.open(filename + ".txt", ios::out); 
-
+    dataTarget.open(filename + ".txt", ios::out);
     dataTarget << fileContent;
-
     dataTarget.close();
+    cout << "Changes have been saved!\n";
 }
 
 void addTxt(){
