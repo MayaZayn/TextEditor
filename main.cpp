@@ -1,4 +1,4 @@
-#include "source.cpp"
+#include "source.h"
 
 int main() {
     int option;
