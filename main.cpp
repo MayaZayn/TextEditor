@@ -24,8 +24,8 @@ int main() {
     while (true) {
         menu();
         cin >> option;
-        if (option == "1") {   //there's a problem here in the loop that returns to the menu
-            addTxt();
+        if (option == "1") {   // there's a problem here in the loop that returns to the menu
+            addTxt();          // FIXED
         }
         else if (option == "2"){
             displayContent();
