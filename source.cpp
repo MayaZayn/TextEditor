@@ -24,13 +24,13 @@ void loadFileContent(string filename) {
     dataSource.close();
 }
 
+
 void saveFileContent(string filename) { // This is Mahmoud's job so will leave it as it is
     fstream dataTarget;                 // it needs to ask for new filename, or same file
-    dataTarget.open(filename + ".txt", ios::out); 
-
+    dataTarget.open(filename, ios::out);
     dataTarget << fileContent;
-
     dataTarget.close();
+    cout << "Changes have been saved!\n";
 }
 
 void addTxt(){
@@ -56,7 +56,7 @@ void emptyFile(char file[151]){
         else
             cout<<"\nError Occurred!";
     }
-    else
+    else        //this does not empty the file yet.
         cout << "\nThe file is empty now but not deleted!\n";
     cout<<endl;
 }
@@ -163,5 +163,21 @@ void searchWord() { // sstream WAS NOT #includED!
 void tolower(string& str) {
     for (char& chr : str) {
         chr = towlower(chr);
+    }
+}
+
+void allUpper() {
+    for (char& chr : fileContent) {
+        chr = toupper(chr);
+    }
+}
+
+void firstUpper() {
+    tolower(fileContent);
+    fileContent[0] = toupper(fileContent[0]);
+    for (int i = 0; i <= fileContent.length(); i++) {
+        if (fileContent[i] == ' ' || fileContent[i] == '\n' || fileContent[i] == '\0') {
+            fileContent[i + 1] = toupper(fileContent[i + 1]);
+        }
     }
 }
