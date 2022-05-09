@@ -24,9 +24,9 @@ void loadFileContent(string filename) {
     dataSource.close();
 }
 
-void saveFileContent(string filename) {
-    fstream dataTarget;
-    dataTarget.open(filename + ".txt", ios::out);
+void saveFileContent(string filename) { // This is Mahmoud's job so will leave it as it is
+    fstream dataTarget;                 // it needs to ask for new filename, or same file
+    dataTarget.open(filename + ".txt", ios::out); 
 
     dataTarget << fileContent;
 
@@ -132,31 +132,31 @@ void countLines() {
 }
 
 
-//void searchWord() {
-//    istringstream sstream(fileContent);
-//    string wantedWord, word;
-//    bool isFound = false;
-//
-//    cout << "Enter a word to search for: ";
-//    cin >> wantedWord;
-//    tolower(wantedWord); // overloaded to work with string
-//
-//    while (!sstream.fail()) {
-//        sstream >> word;
-//        tolower(word);
-//        if (wantedWord == word) {
-//            isFound = true;
-//            break;
-//        }
-//    }
-//
-//    if (isFound) {
-//        cout << "Word was found.\n";
-//    }
-//    else {
-//        cout << "Word was not found.\n";
-//    }
-//}
+void searchWord() { // sstream WAS NOT #includED!
+   istringstream contentStream(fileContent);
+   string wantedWord, word;
+   bool isFound = false;
+
+   cout << "Enter a word to search for: ";
+   cin >> wantedWord;
+   tolower(wantedWord); // overloaded to work with string
+
+   while (!contentStream.fail()) {
+       contentStream >> word;
+       tolower(word);
+       if (wantedWord == word) {
+           isFound = true;
+           break;
+       }
+   }
+
+   if (isFound) {
+       cout << "Word was found.\n";
+   }
+   else {
+       cout << "Word was not found.\n";
+   }
+}
 
 void tolower(string& str) {
     for (char& chr : str) {

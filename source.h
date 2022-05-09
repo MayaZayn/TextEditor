@@ -6,6 +6,7 @@
 #include <cstring>
 #include <string>
 #include <conio.h>
+#include <sstream>
 
 using namespace std;
 
