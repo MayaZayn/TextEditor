@@ -1,4 +1,4 @@
-#include "source.h"
+#include "source.cpp"
 
 int main() {
     int option;
@@ -41,6 +41,9 @@ int main() {
         else if (option == 5){
             decrypt();
         }
+        else if (option == 11) {
+            wordcount(filename);
+        }
         else if (option == 12) {
             allUpper();
             printf("The contents of the file has been transformed to upper case!\n");
@@ -58,7 +61,7 @@ int main() {
         }
         else {
             cout << "Please choose a valid option!\n";
-            // there should be a sleep here
+            sleep(2);
             // return main();      //needs something to handle wrong input of a different type like string
             continue;
         }

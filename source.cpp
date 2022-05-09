@@ -215,3 +215,20 @@ string takeInput() { // in case someone fancy using it
 }
 
 
+void wordcount(string filename) {
+    string word, temp; int count = 0;
+    printf("Enter the word to count how many times it occurred in file: ");
+    cin >> word;
+    cout << "The word " << word << " occurred: ";
+
+    tolower(word);
+    fstream file(filename);
+    while (file >> temp) {
+        tolower(temp);
+        if (temp == word)
+            count++;
+    }
+    
+    cout << count << " times\n";
+}
+
