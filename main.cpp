@@ -58,8 +58,6 @@ int main() {
 
         cout << "\nWhat else do you want to do?\n\n";
         // there should be a sleep here
-        menu();
-        cin >> option;
     }
 
 
