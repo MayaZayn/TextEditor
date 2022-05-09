@@ -41,7 +41,19 @@ int main() {
         else if (option == 5){
             decrypt();
         }
-        else if (option == 15){
+        else if (option == 12) {
+            allUpper();
+            printf("The contents of the file has been transformed to upper case!\n");
+        }
+        else if (option == 13) {
+            tolower(fileContent);
+            printf("The contents of the file has been transformed to lower case!\n");
+        }
+        else if (option == 14) {
+            firstUpper();
+            printf("First Caps Applied!\n");
+        }
+        else if (option == 15) {
             saveFileContent(filename);
         }
         else {
@@ -57,7 +69,7 @@ int main() {
         cin >> option;
         cin.ignore();
     }
-    cout << "Bye Bye User...";
+    cout << "Bye Bye User...\n";
 
     return 0;
 }

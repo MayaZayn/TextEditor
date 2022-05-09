@@ -27,4 +27,6 @@ void countChars();
 void countLines();
 void searchWord();
 void tolower(string&);
+void allUpper();
+void firstUpper();
 #endif //MAIN_CPP_SOURCE_H
