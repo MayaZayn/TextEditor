@@ -1,5 +1,6 @@
 #ifndef MAIN_CPP_SOURCE_H
 #define MAIN_CPP_SOURCE_H
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -16,7 +17,7 @@ extern string fileContent;
 
 void menu();
 void loadFileContent(string);
-void saveFileContent(string);
+string takeInput();
 
 void addTxt();
 void displayContent();
@@ -28,10 +29,10 @@ void countWords();
 void countChars();
 void countLines();
 void searchWord();
+void wordCount();
 void allUpper();
-void firstUpper();
-void wordcount();
 void tolower(string&);
-string takeInput();
+void firstUpper();
+void saveFileContent(string);
 
 #endif //MAIN_CPP_SOURCE_H

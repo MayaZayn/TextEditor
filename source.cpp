@@ -28,7 +28,7 @@ void loadFileContent(string filename) {
 /* menu functions */
 
 
-void saveFileContent(string filename) { // ambigouos function @_@
+void saveFileContent(string filename) { // ambiguous function @_@
     fstream dataTarget;
     printf("Enter a new file name or press enter to save on the same file\n");
     char chr; string input;
@@ -66,11 +66,8 @@ void saveFileContent(string filename) { // ambigouos function @_@
 }
 
 void addTxt(){
-    //needs to work on something other than the external console and to delete the ctrl+z symbol
-    string txt;
-    cout << "Enter the text you want to add to the file or ctrl + z + enter to exit: " << endl;
-    getline(cin >> ws, txt, '\0');
-    fileContent += txt + '\n';
+    cout << "Enter the text you want to add to the file or ctrl + z to exit: " << endl;
+    fileContent += takeInput();
 }
 
 void displayContent(){
@@ -78,17 +75,19 @@ void displayContent(){
 }
 
 void emptyFile(char file[151]){
+    fileContent = "";
+    cout << "The contents of the file has been deleted successfully!";
     char ans;
-    cout << "\nDo you want to delete the file itself? (y/n)\n"; // this option contradicts with
-    cin >> ans; ans = tolower(ans);                             // save-at-end mechanism???
-    if (ans == 'y'){                                            // not sure though...
+    cout << "\nDo you want to delete the file itself? (y/n)\n";
+    cin >> ans; ans = tolower(ans);
+    if (ans == 'y'){
         int status = remove(file);
         if(status==0)
             cout<<"\nFile Deleted Successfully!\n";
         else
             cout<<"\nError Occurred!";
     }
-    else        //this does not empty the file yet. 
+    else
         cout << "\nThe file is empty now but not deleted!\n";
     cout<<endl;
 }
@@ -146,7 +145,7 @@ void countChars() {
     for (char chr : fileContent) {
         nChars++;
     }
-    cout << "Number of charctars: " << nChars << endl;
+    cout << "Number of characters: " << nChars << endl;
 }
 
 
@@ -186,22 +185,22 @@ void allUpper() {
     for (char& chr : fileContent) {         // make every char uppercase
         chr = toupper(chr);
     }
+    printf("The contents of the file has been transformed to upper case!\n");
 }
 
 void firstUpper() {
     tolower(fileContent);       // turns entire string to lower
-    fileContent[0] = toupper(fileContent[0]);       // make first letter Cap
+    fileContent[0] = toupper(fileContent[0]);       // makes first letter Cap
     for (int i = 0; i <= fileContent.length(); i++) {
         if (fileContent[i] == ' ' || fileContent[i] == '\n') {
             fileContent[i + 1] = toupper(fileContent[i + 1]);   // if a space or newline is found
         }                                                       // the character after it is turned Cap
     }
+    printf("First Caps Applied!\n");
 }
 
 
-
-
-void wordcount() {
+void wordCount() {
     vector<string> arr;                 // vector to store each word individually
     int count = 0; string word, temp = "";
     for (int i = 0; i <= fileContent.length(); i++) {       // loop to find each word
@@ -235,8 +234,8 @@ void tolower(string& str) {
     }
 }
 
-string takeInput() { // in case someone fancy using it
-	string input;    // just like cleanStream() ;=;
+string takeInput() {
+	string input;
 	char chr;
 	while (true) { 
         chr = (char)_getch();

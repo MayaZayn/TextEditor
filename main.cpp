@@ -11,34 +11,28 @@ int main() {
     if (database.fail()){
         database.open(filename, ios::app);
         cout << "This is a new file. I have created it for you.\nWhat do you want to do today?" << endl;
-        // menu();
-        // cin >> option;
     }
     else{
         cout << "This file already exists.\nI have opened it for you.\nWhat do you want to do today?" << endl;
-        // menu();
-        // cin >> option;
     }
-    sleep(3);
+    sleep(2);
     
     database.close();
 
     loadFileContent(filename);
 
-    while (option != "16"){
+    while (true){
         menu();
         cin.clear();
         cin >> option;
         cin.ignore();
-        if (option == "1"){   //there's a problem here in the loop that returns to the menu
+        if (option == "1"){
             addTxt();
         }
         else if (option == "2"){
             displayContent();
         }
         else if (option == "3"){
-            fileContent = ""; // this is the function's job, should not be in main!
-            cout << "The contents of the file has been deleted successfully!";
             emptyFile(filename);
         }
         else if (option == "4"){
@@ -47,9 +41,26 @@ int main() {
         else if (option == "5"){
             decrypt();
         }
+        else if (option == "6"){
+            mergeAnotherFile();
+        }
+        else if (option == "7"){
+            countWords();
+        }
+        else if (option == "8"){
+            countChars();
+        }
+        else if (option == "9"){
+            countLines();
+        }
+        else if (option == "10"){
+            searchWord();
+        }
+        else if (option == "11"){
+            wordCount();
+        }
         else if (option == "12") {
             allUpper();
-            printf("The contents of the file has been transformed to upper case!\n");
         }
         else if (option == "13") {
             tolower(fileContent);
@@ -57,22 +68,23 @@ int main() {
         }
         else if (option == "14") {
             firstUpper();
-            printf("First Caps Applied!\n");
         }
         else if (option == "15") {
             saveFileContent(filename);
         }
+        else if (option == "16") {
+            break;
+        }
         else {
             cout << "Please choose a valid option!\n";
-            sleep(3);
-            // return main();      //needs something to handle wrong input of a different type like string
-            continue;              // HANDLED
+            sleep(1);
+            continue;
         }   
 
         cout << "\nWhat else do you want to do?\n\n";
-        sleep(3);
+        sleep(2);
     }
     cout << "Bye Bye User...\n";
-
+    sleep(2);
     return 0;
 }
