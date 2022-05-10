@@ -25,7 +25,10 @@ void loadFileContent(string filename) {
 }
 
 
-void saveFileContent(string filename) {
+/* menu functions */
+
+
+void saveFileContent(string filename) { // ambigouos function @_@
     fstream dataTarget;
     printf("Enter a new file name or press enter to save on the same file\n");
     char chr; string input;
@@ -178,11 +181,6 @@ void searchWord() {
    cout << "Word was not found.\n";
 }
 
-void tolower(string& str) {
-    for (char& chr : str) {
-        chr = towlower(chr);
-    }
-}
 
 void allUpper() {
     for (char& chr : fileContent) {         // make every char uppercase
@@ -200,6 +198,42 @@ void firstUpper() {
     }
 }
 
+
+
+
+void wordcount() {
+    vector<string> arr;                 // vector to store each word individually
+    int count = 0; string word, temp = "";
+    for (int i = 0; i <= fileContent.length(); i++) {       // loop to find each word
+        if (fileContent[i] != ' ' && fileContent[i] != '\n')
+            temp += fileContent[i];
+        else {
+            tolower(temp);              // store it in lower case
+            arr.push_back(temp);
+            temp = "";                  // reset the value of temp to store another word
+        }
+    }
+    
+    printf("Enter word to count the number of times it occurs in the text: ");
+    cin >> word;
+    cout << "The count of the word " << word << " is: ";
+    tolower(word);                      // to lower the wanted word to match it with
+    for (string st : arr) {             // loop on vector
+        if (st == word)                 // add 1 to count if the index = word
+            count++;
+    }
+    cout << count << " times!\n";
+}
+
+
+
+/* other functions */
+
+void tolower(string& str) {
+    for (char& chr : str) {
+        chr = towlower(chr);
+    }
+}
 
 string takeInput() { // in case someone fancy using it
 	string input;    // just like cleanStream() ;=;
@@ -232,27 +266,3 @@ string takeInput() { // in case someone fancy using it
 	return input;
 }
 
-
-void wordcount() {
-    vector<string> arr;                 // vector to store each word individually
-    int count = 0; string word, temp = "";
-    for (int i = 0; i <= fileContent.length(); i++) {       // loop to find each word
-        if (fileContent[i] != ' ' && fileContent[i] != '\n')
-            temp += fileContent[i];
-        else {
-            tolower(temp);              // store it in lower case
-            arr.push_back(temp);
-            temp = "";                  // reset the value of temp to store another word
-        }
-    }
-    
-    printf("Enter word to count the number of times it occurs in the text: ");
-    cin >> word;
-    cout << "The count of the word " << word << " is: ";
-    tolower(word);                      // to lower the wanted word to match it with
-    for (string st : arr) {             // loop on vector
-        if (st == word)                 // add 1 to count if the index = word
-            count++;
-    }
-    cout << count << " times!\n";
-}

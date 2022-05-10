@@ -28,10 +28,10 @@ void countWords();
 void countChars();
 void countLines();
 void searchWord();
-void tolower(string&);
 void allUpper();
 void firstUpper();
 void wordcount();
+void tolower(string&);
 string takeInput();
 
 #endif //MAIN_CPP_SOURCE_H
