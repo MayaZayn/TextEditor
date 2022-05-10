@@ -7,6 +7,8 @@
 #include <string>
 #include <conio.h>
 #include <sstream>
+#include <unistd.h>
+#include <vector>
 
 using namespace std;
 
@@ -29,7 +31,7 @@ void searchWord();
 void tolower(string&);
 void allUpper();
 void firstUpper();
-
+void wordcount();
 string takeInput();
 
 #endif //MAIN_CPP_SOURCE_H

@@ -19,6 +19,8 @@ int main() {
         // menu();
         // cin >> option;
     }
+    sleep(3);
+    
     database.close();
 
     loadFileContent(filename);
@@ -62,12 +64,13 @@ int main() {
         }
         else {
             cout << "Please choose a valid option!\n";
-            // there should be a sleep here
+            sleep(3);
             // return main();      //needs something to handle wrong input of a different type like string
             continue;              // HANDLED
         }   
 
         cout << "\nWhat else do you want to do?\n\n";
+        sleep(3);
     }
     cout << "Bye Bye User...\n";
 

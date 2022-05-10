@@ -25,12 +25,41 @@ void loadFileContent(string filename) {
 }
 
 
-void saveFileContent(string filename) { // This is Mahmoud's job so will leave it as it is
-    fstream dataTarget;                 // it needs to ask for new filename, or same file
-    dataTarget.open(filename, ios::out);
-    dataTarget << fileContent;
-    dataTarget.close();
-    cout << "Changes have been saved!\n";
+void saveFileContent(string filename) {
+    fstream dataTarget;
+    printf("Enter a new file name or press enter to save on the same file\n");
+    char chr; string input;
+    while (true) {
+        chr = getch();
+        if (chr == 13) {                 //ascii of \n
+            break;
+        }
+        if ((int)chr == 8) {             // ascii of Backspace
+            if (input.length() < 1 || input[input.length() - 1] == '\n') { // to avoid unwanted erasing
+                continue;
+            }                            
+			cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
+                                         // and then ' ' erases the last character
+            
+            input.pop_back();            // erase from actual input
+			continue;
+        }
+        input += chr;
+        cout << chr;
+    }
+    if (input == "") {                          // if Enter is pressed
+        dataTarget.open(filename, ios::out);    // open the same file and save in it
+        dataTarget << fileContent;
+        dataTarget.close();
+        cout << "Changes have been saved to the same file!\n";
+    }
+    else {                                              // save to new file with the name entered
+        printf("\nNew file has been created.\n");
+        dataTarget.open(input + ".txt", ios::app);
+        dataTarget << fileContent;
+        dataTarget.close();
+        printf("Changes have been saved!.\n");
+    }
 }
 
 void addTxt(){
@@ -156,18 +185,18 @@ void tolower(string& str) {
 }
 
 void allUpper() {
-    for (char& chr : fileContent) {
+    for (char& chr : fileContent) {         // make every char uppercase
         chr = toupper(chr);
     }
 }
 
 void firstUpper() {
-    tolower(fileContent);
-    fileContent[0] = toupper(fileContent[0]);
+    tolower(fileContent);       // turns entire string to lower
+    fileContent[0] = toupper(fileContent[0]);       // make first letter Cap
     for (int i = 0; i <= fileContent.length(); i++) {
-        if (fileContent[i] == ' ' || fileContent[i] == '\n' || fileContent[i] == '\0') {
-            fileContent[i + 1] = toupper(fileContent[i + 1]);
-        }
+        if (fileContent[i] == ' ' || fileContent[i] == '\n') {
+            fileContent[i + 1] = toupper(fileContent[i + 1]);   // if a space or newline is found
+        }                                                       // the character after it is turned Cap
     }
 }
 
@@ -204,3 +233,26 @@ string takeInput() { // in case someone fancy using it
 }
 
 
+void wordcount() {
+    vector<string> arr;                 // vector to store each word individually
+    int count = 0; string word, temp = "";
+    for (int i = 0; i <= fileContent.length(); i++) {       // loop to find each word
+        if (fileContent[i] != ' ' && fileContent[i] != '\n')
+            temp += fileContent[i];
+        else {
+            tolower(temp);              // store it in lower case
+            arr.push_back(temp);
+            temp = "";                  // reset the value of temp to store another word
+        }
+    }
+    
+    printf("Enter word to count the number of times it occurs in the text: ");
+    cin >> word;
+    cout << "The count of the word " << word << " is: ";
+    tolower(word);                      // to lower the wanted word to match it with
+    for (string st : arr) {             // loop on vector
+        if (st == word)                 // add 1 to count if the index = word
+            count++;
+    }
+    cout << count << " times!\n";
+}
