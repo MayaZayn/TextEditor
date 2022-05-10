@@ -47,16 +47,16 @@ void displayContent(){
 
 void emptyFile(char file[151]){
     char ans;
-    cout << "\nDo you want to delete the file itself? (y/n)\n";
-    cin >> ans; ans = tolower(ans);
-    if (ans == 'y'){
+    cout << "\nDo you want to delete the file itself? (y/n)\n"; // this option contradicts with
+    cin >> ans; ans = tolower(ans);                             // save-at-end mechanism???
+    if (ans == 'y'){                                            // not sure though...
         int status = remove(file);
         if(status==0)
             cout<<"\nFile Deleted Successfully!\n";
         else
             cout<<"\nError Occurred!";
     }
-    else        //this does not empty the file yet.
+    else        //this does not empty the file yet. 
         cout << "\nThe file is empty now but not deleted!\n";
     cout<<endl;
 }
@@ -92,7 +92,7 @@ void mergeAnotherFile() {
     loadFileContent(filename);
 }
 
-void countWords() { // 100% accuracy
+void countWords() { 
     int nWords = 0;
 
     for (int i = 0; i < fileContent.length(); i++) {
@@ -129,7 +129,7 @@ void countLines() {
 }
 
 
-void searchWord() { // sstream WAS NOT #includED!
+void searchWord() {
    istringstream contentStream(fileContent);
    string wantedWord, word;
 
@@ -181,8 +181,8 @@ string takeInput() { // in case someone fancy using it
             break;
         }
 		if ((int)chr == 8) { // ascii of Backspace
-            if (input.length() < 1 || input[input.length() - 1] == '\n') { // to avoid unwanted erasing
-                continue;
+            if (input.length() < 1 || input[input.length() - 1] == '\n') { 
+                continue; // to avoid unwanted erasing
             }                            
 			cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
                                          // and then ' ' erases the last character
