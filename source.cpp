@@ -204,7 +204,7 @@ void wordCount() {
     vector<string> arr;                 // vector to store each word individually
     int count = 0; string word, temp = "";
     for (int i = 0; i <= fileContent.length(); i++) {       // loop to find each word
-        if (fileContent[i] != ' ' && fileContent[i] != '\n')
+        if (fileContent[i] != ' ' && fileContent[i] != '\n' && fileContent[i] != '\0')
             temp += fileContent[i];
         else {
             tolower(temp);              // store it in lower case
