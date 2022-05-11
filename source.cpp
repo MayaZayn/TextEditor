@@ -226,14 +226,15 @@ void wordCount() {
 }
 
 
-
-/* other functions */
-
 void tolower(string& str) {
     for (char& chr : str) {
         chr = towlower(chr);
     }
 }
+
+
+
+/* other functions */
 
 string takeInput() {
 	string input;
