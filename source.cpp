@@ -117,9 +117,12 @@ void decrypt(){
 
 void mergeAnotherFile() {
     string filename;
-    
+    fstream targetFile;
     cout << "Enter name of the file: ";
     cin >> filename;
+    targetFile.open(filename + ".txt", ios::app);
+    targetFile << endl;
+    targetFile.close();
     loadFileContent(filename);
 }
 
