@@ -142,7 +142,7 @@ void countWords() {
 
 
 void countChars() {
-    int nChars;
+    int nChars = 0;
     for (char chr : fileContent) {
         nChars++;
     }
