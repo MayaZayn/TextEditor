@@ -28,7 +28,7 @@ void loadFileContent(string filename) { // appends a given file's contents
 /* menu functions */
 
 
-void saveFileContent(string filename) { // writes fileContent on a given file
+void saveFileContent(string filename) {
     fstream dataTarget;
     printf("Enter a new file name or press enter to save on the same file\n");
     char chr; string input;
@@ -50,18 +50,28 @@ void saveFileContent(string filename) { // writes fileContent on a given file
         input += chr;
         cout << chr;
     }
-    if (input == "") {                          // if Enter is pressed
-        dataTarget.open(filename, ios::out);    // open the same file and save in it
+    if (input == "" || input + ".txt" == filename) {        // if Enter is pressed or opened the same file
+        dataTarget.open(filename, ios::out);                // open the same file and save in it
         dataTarget << fileContent;
         dataTarget.close();
-        cout << "Changes have been saved to the same file!\n";
+        cout << "\nChanges have been saved to the same file!\n";
     }
-    else {                                              // save to new file with the name entered
-        printf("\nNew file has been created.\n");
-        dataTarget.open(input + ".txt", ios::app);
-        dataTarget << fileContent;
-        dataTarget.close();
-        printf("Changes have been saved!.\n");
+    else {
+        fstream dataTarget(input + ".txt", ios::in);        // open in read mode to check if file exist
+        if (dataTarget.fail()) {                            // if file doesn't exist  
+            printf("\nNew file has been created.\n");      
+            dataTarget.open(input + ".txt", ios::app);      // create new file and save in it
+            dataTarget << fileContent;
+            dataTarget.close();
+            printf("Changes have been saved!.\n");
+        }
+        else {                                              // if file exists in directory
+            printf("\nThis text file already exists.\nChanges have been overwritten to this file\n");
+            dataTarget.close();                             // close read mode
+            dataTarget.open(input + ".txt", ios::out);      // open write mode and overwrite changes
+            dataTarget << fileContent;
+            dataTarget.close();
+        }
     }
 }
 
