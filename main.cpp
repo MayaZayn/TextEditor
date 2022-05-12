@@ -1,4 +1,4 @@
-#include "source.h"
+#include "source.h" // he yells, still he runs
 
 int main() {
     string option;
@@ -84,7 +84,7 @@ int main() {
         cout << "\nWhat else do you want to do?\n\n";
         sleep(2);
     }
-    cout << "Bye Bye User...\n";
+    cout << "Bye Bye User...\n"; // say bye bye
     sleep(2);
     return 0;
 }

@@ -8,7 +8,7 @@
 #include <string>
 #include <conio.h>
 #include <sstream>
-#include <unistd.h>
+#include <unistd.h> // he yells, still he runs
 #include <vector>
 
 using namespace std;
@@ -18,7 +18,6 @@ extern string fileContent;
 void menu();
 void loadFileContent(string);
 string takeInput();
-
 void addTxt();
 void displayContent();
 void emptyFile(char file[151]);

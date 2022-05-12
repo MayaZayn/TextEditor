@@ -1,6 +1,6 @@
-#include "source.h"
+#include "source.h" // he yells, still he runs
 
-string fileContent = "";
+string fileContent = ""; // initialization to avoid unexpected values
 
 void menu(){
     cout << "1. Add new text to the end of the file\n2. Display the content of the file\n3. Empty the file\n";
@@ -10,13 +10,13 @@ void menu(){
     cout << "13. Turn the file content to lower case.\n14. Turn file content to 1st caps (1st char of each word is capital)\n15. Save\n16. Exit\n";
 }
 
-void loadFileContent(string filename) {
-    fstream dataSource;
-
+void loadFileContent(string filename) { // appends a given file's contents
+    fstream dataSource;                 // to the current content 
+    
     dataSource.open(filename, ios::in);
-    while (!dataSource.eof()) {
+    while (!dataSource.eof()) { // keep loading charcters until end of file
         char chr = dataSource.get();
-        if (chr != EOF) { // to avoid having multiple eof characters
+        if (chr != EOF) { // to avoid having EOF characters in the string
             fileContent += chr;
         }
     }
@@ -28,7 +28,7 @@ void loadFileContent(string filename) {
 /* menu functions */
 
 
-void saveFileContent(string filename) { // ambiguous function @_@
+void saveFileContent(string filename) { // writes fileContent on a given file
     fstream dataTarget;
     printf("Enter a new file name or press enter to save on the same file\n");
     char chr; string input;
@@ -120,19 +120,21 @@ void mergeAnotherFile() {
     cout << "Enter name of the file: ";
     cin >> filename;
 
-    fileContent += '\n';
+    fileContent += '\n'; // to have the new content at the end of current content
     loadFileContent(filename);
-}
+    // since loadContent() appends given file's content to the current content
+}   // it is enough to call it, and it will add the given content to the current 
 
-void countWords() { 
+
+void countWords() {
     int nWords = 0;
 
     for (int i = 0; i < fileContent.length(); i++) {
         if ((fileContent[i] != ' ' && fileContent[i] != '\n') && (
             fileContent[i + 1] == ' ' || fileContent[i + 1] == '\n' || fileContent[i + 1] == '\0'
-            )
-            )
-        {
+            ) // if any non-space-non-newline is found to be
+            ) // next to a space or a newline or end of string
+        {     // then it is a word
             nWords++;
         }
     }
@@ -145,7 +147,7 @@ void countChars() {
     int nChars = 0;
     for (char chr : fileContent) {
         nChars++;
-    }
+    } // nada mucho to say
     cout << "Number of characters: " << nChars << endl;
 }
 
@@ -154,27 +156,29 @@ void countLines() {
     int nLines = 0;
     for (int i = 0; i <= fileContent.length(); i++) {
         if (fileContent[i] == '\n' || fileContent[i] == '\0') {
-            nLines++;
-        }
+            nLines++; // if a newline or an end of string charcter is found
+        }             // then it is the end of a line
     }
     cout << "Number of lines: " << nLines << endl;
 }
 
 
 void searchWord() {
-   istringstream contentStream(fileContent);
+   istringstream contentStream(fileContent); // fill a string stream with file contents
    string wantedWord, word;
 
    cout << "Enter a word to search for: ";
    cin >> wantedWord;
    tolower(wantedWord); // overloaded to work with string
 
-   while (!contentStream.fail()) {
-       contentStream >> word;
-       tolower(word);
+   while (!contentStream.fail()) { // until end of stream
+       
+       contentStream >> word; // stream will separate each insert with a space/newline
+                              // so each word will be taken separately
+       tolower(word);       
        if (wantedWord == word) {
            cout << "Word was found.\n";
-           return;
+           return; // terminate function
        }
    }
 
@@ -239,10 +243,10 @@ void tolower(string& str) {
 string takeInput() {
 	string input;
 	char chr;
-	while (true) { 
+	while (true) { // keep taking input until break
         chr = (char)_getch();
         if ((int)chr == 26) { // ascii of '^Z'
-            break;
+            break;            // break on ctrl+z 
         }
 		if ((int)chr == 8) { // ascii of Backspace
             if (input.length() < 1 || input[input.length() - 1] == '\n') { 
@@ -254,13 +258,13 @@ string takeInput() {
             input.pop_back(); // erase from actual input
 			continue;
         }
-        if ((int)chr == 13) {
-            cout << endl;
-            input += '\n';
+        if ((int)chr == 13) { // if input is a newline
+            cout << endl;     // print newline
+            input += '\n';    // add newline to input
             continue;
         }
         input += chr;
-        cout << chr;
+        cout << chr; // to display what _getch() have catched
 	}
 	cout << endl;
 
