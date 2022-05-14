@@ -1,4 +1,4 @@
-#include "source.h" // he yells, still he runs
+#include "source.h"
 
 int main() {
     string option;
@@ -10,13 +10,12 @@ int main() {
 
     if (database.fail()){
         database.open(filename, ios::app);
-        cout << "This is a new file. I have created it for you.\nWhat do you want to do today?" << endl;
+        cout << "This is a new file. I have created it for you.\n------------------------------\nWhat do you want to do today?" << endl;
     }
     else{
-        cout << "This file already exists.\nI have opened it for you.\nWhat do you want to do today?" << endl;
+        cout << "This file already exists.\nI have opened it for you.\n------------------------------\nWhat do you want to do today?" << endl;
     }
-    sleep(2);
-    
+
     database.close();
 
     loadFileContent(filename);
@@ -79,10 +78,10 @@ int main() {
             cout << "Please choose a valid option!\n";
             sleep(1);
             continue;
-        }   
+        }
 
+        cout << "\n-----------------------------";
         cout << "\nWhat else do you want to do?\n\n";
-        sleep(2);
     }
     cout << "Bye Bye User...\n"; // say bye bye
     sleep(2);

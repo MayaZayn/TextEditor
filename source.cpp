@@ -14,7 +14,7 @@ void loadFileContent(string filename) { // appends a given file's contents
     fstream dataSource;                 // to the current content 
     
     dataSource.open(filename, ios::in);
-    while (!dataSource.eof()) { // keep loading charcters until end of file
+    while (!dataSource.eof()) { // keep loading characters until end of file
         char chr = dataSource.get();
         if (chr != EOF) { // to avoid having EOF characters in the string
             fileContent += chr;
@@ -75,15 +75,18 @@ void saveFileContent(string filename) {
     }
 }
 
+//uses takeInput function to add text until ctrl+z is pressed
 void addTxt(){
     cout << "Enter the text you want to add to the file or ctrl + z to exit: " << endl;
     fileContent += takeInput();
 }
 
+//print out the contents of the file
 void displayContent(){
     cout << fileContent;
 }
 
+//deletes the content in the file and gives the user a choice to whether delete the file itself or not
 void emptyFile(char file[151]){
     fileContent = "";
     cout << "The contents of the file has been deleted successfully!";
@@ -102,6 +105,7 @@ void emptyFile(char file[151]){
     cout<<endl;
 }
 
+//encrypts file content (increase the ascii code of the letter by one)
 void encrypt(){
     for (char & i : fileContent) {
         if (i == 'z')
@@ -113,6 +117,8 @@ void encrypt(){
     }
     cout << "\nFile contents have been encrypted!\n";
 }
+
+//decrypts file content (decrease the ascii code of the letter by one)
 void decrypt(){
     for (char & i : fileContent) {
         if (i == 'a')
@@ -129,6 +135,7 @@ void mergeAnotherFile() {
     string filename;
     cout << "Enter name of the file: ";
     cin >> filename;
+    filename += ".txt";
 
     fileContent += '\n'; // to have the new content at the end of current content
     loadFileContent(filename);
@@ -157,7 +164,7 @@ void countChars() {
     int nChars = 0;
     for (char chr : fileContent) {
         nChars++;
-    } // nada mucho to say
+    }
     cout << "Number of characters: " << nChars << endl;
 }
 
@@ -166,7 +173,7 @@ void countLines() {
     int nLines = 0;
     for (int i = 0; i <= fileContent.length(); i++) {
         if (fileContent[i] == '\n' || fileContent[i] == '\0') {
-            nLines++; // if a newline or an end of string charcter is found
+            nLines++; // if a newline or an end of string character is found
         }             // then it is the end of a line
     }
     cout << "Number of lines: " << nLines << endl;
@@ -274,7 +281,7 @@ string takeInput() {
             continue;
         }
         input += chr;
-        cout << chr; // to display what _getch() have catched
+        cout << chr; // to display what _getch() have caught
 	}
 	cout << endl;
 
