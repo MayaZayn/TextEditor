@@ -49,14 +49,14 @@ cmake_ninja_workdir = C$:/Users/Maya$ Ayman/Desktop/Assignmet$ #4/TextEditor/cma
 
 build cmake_object_order_depends_target_TextEditor: phony || CMakeFiles/TextEditor.dir
 
-build CMakeFiles/TextEditor.dir/main.cpp.obj: CXX_COMPILER__TextEditor_Debug C$:/Users/Maya$ Ayman/Desktop/Assignmet$ #4/TextEditor/main.cpp || cmake_object_order_depends_target_TextEditor
-  DEP_FILE = CMakeFiles\TextEditor.dir\main.cpp.obj.d
+build CMakeFiles/TextEditor.dir/CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorApp.cpp.obj: CXX_COMPILER__TextEditor_Debug C$:/Users/Maya$ Ayman/Desktop/Assignmet$ #4/TextEditor/CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorApp.cpp || cmake_object_order_depends_target_TextEditor
+  DEP_FILE = CMakeFiles\TextEditor.dir\CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorApp.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\TextEditor.dir
   OBJECT_FILE_DIR = CMakeFiles\TextEditor.dir
 
-build CMakeFiles/TextEditor.dir/source.cpp.obj: CXX_COMPILER__TextEditor_Debug C$:/Users/Maya$ Ayman/Desktop/Assignmet$ #4/TextEditor/source.cpp || cmake_object_order_depends_target_TextEditor
-  DEP_FILE = CMakeFiles\TextEditor.dir\source.cpp.obj.d
+build CMakeFiles/TextEditor.dir/CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.cpp.obj: CXX_COMPILER__TextEditor_Debug C$:/Users/Maya$ Ayman/Desktop/Assignmet$ #4/TextEditor/CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.cpp || cmake_object_order_depends_target_TextEditor
+  DEP_FILE = CMakeFiles\TextEditor.dir\CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.cpp.obj.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles\TextEditor.dir
   OBJECT_FILE_DIR = CMakeFiles\TextEditor.dir
@@ -69,7 +69,7 @@ build CMakeFiles/TextEditor.dir/source.cpp.obj: CXX_COMPILER__TextEditor_Debug C
 #############################################
 # Link the executable TextEditor.exe
 
-build TextEditor.exe: CXX_EXECUTABLE_LINKER__TextEditor_Debug CMakeFiles/TextEditor.dir/main.cpp.obj CMakeFiles/TextEditor.dir/source.cpp.obj
+build TextEditor.exe: CXX_EXECUTABLE_LINKER__TextEditor_Debug CMakeFiles/TextEditor.dir/CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorApp.cpp.obj CMakeFiles/TextEditor.dir/CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TextEditor.dir
