@@ -137,7 +137,7 @@ void mergeAnotherFile() {
     cout << "Enter name of the file: ";
     cin >> filename;
     filename += ".txt";
-    testFile.open(filename, ios::app);
+    testFile.open(filename, ios::in);
     if (testFile.fail()) {
         cout << "Could not open file.";
         return; // terminate if it does not exist
