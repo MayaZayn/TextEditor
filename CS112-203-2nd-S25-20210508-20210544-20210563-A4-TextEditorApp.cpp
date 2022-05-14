@@ -10,10 +10,14 @@ int main() {
 
     if (database.fail()){
         database.open(filename, ios::app);
-        cout << "This is a new file. I have created it for you.\n------------------------------\nWhat do you want to do today?" << endl;
+        cout << "This is a new file. I have created it for you."
+            << "\n------------------------------\nWhat do you want to do today ? "
+            << endl;
     }
     else{
-        cout << "This file already exists.\nI have opened it for you.\n------------------------------\nWhat do you want to do today?" << endl;
+        cout << "This file already exists.\n"  
+            << "I have opened it for you.\n------------------------------\n"
+            << "What do you want to do today ? " << endl;
     }
 
     database.close();

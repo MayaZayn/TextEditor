@@ -133,10 +133,17 @@ void decrypt(){
 
 void mergeAnotherFile() {
     string filename;
+    fstream testFile;
     cout << "Enter name of the file: ";
     cin >> filename;
     filename += ".txt";
-
+    testFile.open(filename, ios::app);
+    if (testFile.fail()) {
+        cout << "Could not open file.";
+        return; // terminate if it does not exist
+    }
+    testFile.close();
+    
     fileContent += '\n'; // to have the new content at the end of current content
     loadFileContent(filename);
     // since loadContent() appends given file's content to the current content
