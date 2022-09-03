@@ -14,13 +14,14 @@
 using namespace std;
 
 extern string fileContent;
+extern string fileName;
 
 void menu();
 void loadFileContent(string);
 string takeInput();
 void addTxt();
 void displayContent();
-void emptyFile(char file[151]);
+void emptyFile();
 void encrypt();
 void decrypt();
 void mergeAnotherFile();
@@ -30,8 +31,9 @@ void countLines();
 void searchWord();
 void wordCount();
 void allUpper();
-void tolower(string&);
+void tolowerFileContent();
 void firstUpper();
-void saveFileContent(string);
+void tolower(string&);
+void saveFileContent();
 
 #endif //MAIN_CPP_SOURCE_H

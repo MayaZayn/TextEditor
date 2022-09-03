@@ -1,93 +1,62 @@
 #include "CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.h"
 
+using namespace std;
+
 int main() {
-    string option;
+    int option;
     char filename[151];
-    cout << "Please enter the name of the text file you want to open:" << endl;
+
+    std::cout << "Please enter the name of the text file you want to open:" << endl;
     cin >> filename;
     strcat_s(filename, ".txt");
-    fstream database (filename, ios::in);
+    fstream database(filename, ios::in);
 
-    if (database.fail()){
+    if (database.fail()) {
         database.open(filename, ios::app);
-        cout << "This is a new file. I have created it for you."
+        std::cout << "This is a new file. I have created it for you."
             << "\n------------------------------\nWhat do you want to do today ? "
             << endl;
     }
-    else{
-        cout << "This file already exists.\n"  
+    else {
+        std::cout << "This file already exists.\n"
             << "I have opened it for you.\n------------------------------\n"
             << "What do you want to do today ? " << endl;
     }
 
     database.close();
 
+    fileName = filename;
+
     loadFileContent(filename);
 
-    while (true){
+    void (*menuFunctions[16])(void) = { // first element is neglected 
+        nullptr, addTxt, displayContent, emptyFile,
+        encrypt, decrypt, mergeAnotherFile, countWords,
+        countChars, countLines, searchWord, wordCount,
+        allUpper, tolowerFileContent, firstUpper, saveFileContent
+    };
+
+    while (true) { // THIS IS HOW TO REDUCE NUMBER OF LINES OF CODE!
         menu();
         cin.clear();
         cin >> option;
         cin.ignore();
-        if (option == "1"){
-            addTxt();
-        }
-        else if (option == "2"){
-            displayContent();
-        }
-        else if (option == "3"){
-            emptyFile(filename);
-        }
-        else if (option == "4"){
-            encrypt();
-        }
-        else if (option == "5"){
-            decrypt();
-        }
-        else if (option == "6"){
-            mergeAnotherFile();
-        }
-        else if (option == "7"){
-            countWords();
-        }
-        else if (option == "8"){
-            countChars();
-        }
-        else if (option == "9"){
-            countLines();
-        }
-        else if (option == "10"){
-            searchWord();
-        }
-        else if (option == "11"){
-            wordCount();
-        }
-        else if (option == "12") {
-            allUpper();
-        }
-        else if (option == "13") {
-            tolower(fileContent);
-            printf("The contents of the file has been transformed to lower case!\n");
-        }
-        else if (option == "14") {
-            firstUpper();
-        }
-        else if (option == "15") {
-            saveFileContent(filename);
-        }
-        else if (option == "16") {
+
+        if (option == 16) {
             break;
         }
-        else {
-            cout << "Please choose a valid option!\n";
-            // sleep(1);
+
+        if (option < 1 || option > 15) {
+            std::cout << "Wrong Input.\nTry Again.\n\n";
             continue;
         }
 
-        cout << "\n-----------------------------";
-        cout << "\nWhat else do you want to do?\n\n";
+        (*menuFunctions[option])(); // THIS IS ELEGANCE!!!
+
+        std::cout << "\n-----------------------------";
+        std::cout << "\nWhat else do you want to do?\n\n";
     }
-    cout << "Bye Bye User...\n"; // say bye bye
+    std::cout << "Bye Bye User...\n"; // say bye bye
     // sleep(2);
     return 0;
 }

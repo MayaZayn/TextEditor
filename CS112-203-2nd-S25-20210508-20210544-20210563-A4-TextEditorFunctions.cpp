@@ -5,6 +5,7 @@
 
 
 string fileContent = ""; // initialization to avoid unexpected values
+string fileName;
 
 void menu() {
     cout << "1. Add new text to the end of the file\n2. Display the content of the file\n3. Empty the file\n";
@@ -32,7 +33,7 @@ void loadFileContent(string filename) { // appends a given file's contents
 /* menu functions */
 
 
-void saveFileContent(string filename) {
+void saveFileContent() {
     fstream dataTarget;
     printf("Enter a new file name or press enter to save on the same file\n");
     char chr; string input;
@@ -54,8 +55,8 @@ void saveFileContent(string filename) {
         input += chr;
         cout << chr;
     }
-    if (input == "" || input + ".txt" == filename) {        // if Enter is pressed or opened the same file
-        dataTarget.open(filename, ios::out);                // open the same file and save in it
+    if (input == "" || input + ".txt" == fileName) {        // if Enter is pressed or opened the same file
+        dataTarget.open(fileName, ios::out);                // open the same file and save in it
         dataTarget << fileContent;
         dataTarget.close();
         cout << "\nChanges have been saved to the same file!\n";
@@ -91,7 +92,9 @@ void displayContent() {
 }
 
 //deletes the content in the file and gives the user a choice to whether delete the file itself or not
-void emptyFile(char file[151]) {
+void emptyFile() {
+    const char* file = fileName.c_str(); // instead of taking a parameter
+    
     fileContent = "";
     cout << "The contents of the file has been deleted successfully!";
     char ans;
@@ -262,16 +265,18 @@ void wordCount() {
     cout << count << " times!\n";
 }
 
+void tolowerFileContent() {
+    tolower(fileContent);
+    
+    printf("The contents of the file has been transformed to lower case!\n");
+}
 
+/* other functions */
 void tolower(string& str) {
     for (char& chr : str) {
         chr = towlower(chr);
     }
 }
-
-
-
-/* other functions */
 
 string takeInput() {
     string input;
