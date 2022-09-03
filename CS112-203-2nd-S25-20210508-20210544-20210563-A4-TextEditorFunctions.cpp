@@ -229,7 +229,7 @@ void allUpper() {
 void firstUpper() {
     tolower(fileContent);       // turns entire string to lower
     fileContent[0] = toupper(fileContent[0]);       // makes first letter Cap
-    for (int i = 0; i <= fileContent.length(); i++) {
+    for (int i = 0; i < fileContent.length(); i++) {
         if (fileContent[i] == ' ' || fileContent[i] == '\n') {
             fileContent[i + 1] = toupper(fileContent[i + 1]);   // if a space or newline is found
         }                                                       // the character after it is turned Cap
@@ -242,7 +242,7 @@ void wordCount() {
     vector<string> arr;                 // vector to store each word individually
     int count = 0; string word, temp = "";
     for (int i = 0; i <= fileContent.length(); i++) {       // loop to find each word
-        if (fileContent[i] != ' ' && fileContent[i] != '\n' && fileContent[i] != '\0')
+        if (isalpha(fileContent[i]))
             temp += fileContent[i];
         else {
             tolower(temp);              // store it in lower case
