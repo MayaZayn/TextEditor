@@ -80,7 +80,7 @@ int main() {
         }
         else {
             cout << "Please choose a valid option!\n";
-            sleep(1);
+            // sleep(1);
             continue;
         }
 
@@ -88,6 +88,6 @@ int main() {
         cout << "\nWhat else do you want to do?\n\n";
     }
     cout << "Bye Bye User...\n"; // say bye bye
-    sleep(2);
+    // sleep(2);
     return 0;
 }

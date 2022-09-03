@@ -1,8 +1,12 @@
 #include "CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.h"
 
+
+#include <regex>
+
+
 string fileContent = ""; // initialization to avoid unexpected values
 
-void menu(){
+void menu() {
     cout << "1. Add new text to the end of the file\n2. Display the content of the file\n3. Empty the file\n";
     cout << "4. Encrypt the file content\n5. Decrypt the file content\n6. Merge another file\n";
     cout << "7. Count the number of words in the file.\n8. Count the number of characters in the file\n9. Count the number of lines in the file\n";
@@ -12,7 +16,7 @@ void menu(){
 
 void loadFileContent(string filename) { // appends a given file's contents
     fstream dataSource;                 // to the current content 
-    
+
     dataSource.open(filename, ios::in);
     while (!dataSource.eof()) { // keep loading characters until end of file
         char chr = dataSource.get();
@@ -40,12 +44,12 @@ void saveFileContent(string filename) {
         if ((int)chr == 8) {             // ascii of Backspace
             if (input.length() < 1 || input[input.length() - 1] == '\n') { // to avoid unwanted erasing
                 continue;
-            }                            
-			cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
-                                         // and then ' ' erases the last character
-            
+            }
+            cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
+            // and then ' ' erases the last character
+
             input.pop_back();            // erase from actual input
-			continue;
+            continue;
         }
         input += chr;
         cout << chr;
@@ -59,7 +63,7 @@ void saveFileContent(string filename) {
     else {
         fstream dataTarget(input + ".txt", ios::in);        // open in read mode to check if file exist
         if (dataTarget.fail()) {                            // if file doesn't exist  
-            printf("\nNew file has been created.\n");      
+            printf("\nNew file has been created.\n");
             dataTarget.open(input + ".txt", ios::app);      // create new file and save in it
             dataTarget << fileContent;
             dataTarget.close();
@@ -76,37 +80,37 @@ void saveFileContent(string filename) {
 }
 
 //uses takeInput function to add text until ctrl+z is pressed
-void addTxt(){
+void addTxt() {
     cout << "Enter the text you want to add to the file or ctrl + z to exit: " << endl;
     fileContent += takeInput();
 }
 
 //print out the contents of the file
-void displayContent(){
+void displayContent() {
     cout << fileContent;
 }
 
 //deletes the content in the file and gives the user a choice to whether delete the file itself or not
-void emptyFile(char file[151]){
+void emptyFile(char file[151]) {
     fileContent = "";
     cout << "The contents of the file has been deleted successfully!";
     char ans;
     cout << "\nDo you want to delete the file itself? (y/n)\n";
     cin >> ans; ans = tolower(ans);
-    if (ans == 'y'){
+    if (ans == 'y') {
         int status = remove(file);
-        if(status==0)
-            cout<<"\nFile Deleted Successfully!\n";
+        if (status == 0)
+            cout << "\nFile Deleted Successfully!\n";
         else
-            cout<<"\nError Occurred!";
+            cout << "\nError Occurred!";
     }
     else
         cout << "\nThe file is empty now but not deleted!\n";
-    cout<<endl;
+    cout << endl;
 }
 
 //encrypts file content (increase the ascii code of the letter by one)
-void encrypt(){
+void encrypt() {
     for (char & i : fileContent) {
         if (i == 'z')
             i = 'a';
@@ -119,7 +123,7 @@ void encrypt(){
 }
 
 //decrypts file content (decrease the ascii code of the letter by one)
-void decrypt(){
+void decrypt() {
     for (char & i : fileContent) {
         if (i == 'a')
             i = 'z';
@@ -143,7 +147,7 @@ void mergeAnotherFile() {
         return; // terminate if it does not exist
     }
     testFile.close();
-    
+
     fileContent += '\n'; // to have the new content at the end of current content
     loadFileContent(filename);
     // since loadContent() appends given file's content to the current content
@@ -186,27 +190,32 @@ void countLines() {
     cout << "Number of lines: " << nLines << endl;
 }
 
+void search();
 
 void searchWord() {
-   istringstream contentStream(fileContent); // fill a string stream with file contents
-   string wantedWord, word;
 
-   cout << "Enter a word to search for: ";
-   cin >> wantedWord;
-   tolower(wantedWord); // overloaded to work with string
+    search(); 
+    return;
 
-   while (!contentStream.fail()) { // until end of stream
-       
-       contentStream >> word; // stream will separate each insert with a space/newline
-                              // so each word will be taken separately
-       tolower(word);       
-       if (wantedWord == word) {
-           cout << "Word was found.\n";
-           return; // terminate function
-       }
-   }
+    istringstream contentStream(fileContent); // fill a string stream with file contents
+    string wantedWord, word;
 
-   cout << "Word was not found.\n";
+    cout << "Enter a word to search for: ";
+    cin >> wantedWord;
+    tolower(wantedWord); // overloaded to work with string
+
+    while (!contentStream.fail()) { // until end of stream
+
+        contentStream >> word; // stream will separate each insert with a space/newline
+        // so each word will be taken separately
+        tolower(word);
+        if (wantedWord == word) {
+            cout << "Word was found.\n";
+            return; // terminate function
+        }
+    }
+
+    cout << "Word was not found.\n";
 }
 
 
@@ -241,7 +250,7 @@ void wordCount() {
             temp = "";                  // reset the value of temp to store another word
         }
     }
-    
+
     printf("Enter word to count the number of times it occurs in the text: ");
     cin >> word;
     cout << "The count of the word " << word << " is: ";
@@ -265,22 +274,22 @@ void tolower(string& str) {
 /* other functions */
 
 string takeInput() {
-	string input;
-	char chr;
-	while (true) { // keep taking input until break
+    string input;
+    char chr;
+    while (true) { // keep taking input until break
         chr = (char)_getch();
         if ((int)chr == 26) { // ascii of '^Z'
             break;            // break on ctrl+z 
         }
-		if ((int)chr == 8) { // ascii of Backspace
-            if (input.length() < 1 || input[input.length() - 1] == '\n') { 
+        if ((int)chr == 8) { // ascii of Backspace
+            if (input.length() < 1 || input[input.length() - 1] == '\n') {
                 continue; // to avoid unwanted erasing
-            }                            
-			cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
-                                         // and then ' ' erases the last character
-            
+            }
+            cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
+            // and then ' ' erases the last character
+
             input.pop_back(); // erase from actual input
-			continue;
+            continue;
         }
         if ((int)chr == 13) { // if input is a newline
             cout << endl;     // print newline
@@ -289,9 +298,31 @@ string takeInput() {
         }
         input += chr;
         cout << chr; // to display what _getch() have caught
-	}
-	cout << endl;
+    }
+    cout << endl;
 
-	return input;
+    return input;
 }
 
+
+
+
+
+
+void search()
+{
+    string wantedWord;
+    string temp = fileContent;
+
+    tolower(temp);
+
+    cout << "Enter the word you are searching for: ";
+    cin >> wantedWord;
+
+    regex wordRegEx(wantedWord);
+
+    if (regex_search(temp, wordRegEx))
+        cout << "Word was found" << endl;
+    else
+        cout << "Word was not found" << endl;
+}

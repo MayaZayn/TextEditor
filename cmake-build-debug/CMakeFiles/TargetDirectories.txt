@@ -1,3 +1,0 @@
-C:/Users/Maya Ayman/Desktop/Assignmet #4/TextEditor/cmake-build-debug/CMakeFiles/TextEditor.dir
-C:/Users/Maya Ayman/Desktop/Assignmet #4/TextEditor/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Maya Ayman/Desktop/Assignmet #4/TextEditor/cmake-build-debug/CMakeFiles/rebuild_cache.dir
