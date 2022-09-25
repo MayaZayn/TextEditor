@@ -1,23 +1,14 @@
 #ifndef MAIN_CPP_SOURCE_H
 #define MAIN_CPP_SOURCE_H
 
-#include <cstdio>
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <string>
-#include <conio.h>
-#include <sstream>
-#include <vector>
-
-using namespace std;
+#include <string> // C++ string definition 
 
 extern string fileContent;
 extern string fileName;
 
 void menu();
-void loadFileContent(string);
-string takeInput();
+void loadFileContent(std::string);
+std::string takeInput();
 void addTxt();
 void displayContent();
 void emptyFile();
@@ -33,7 +24,7 @@ void wordCount();
 void allUpper();
 void tolowerFileContent();
 void firstUpper();
-void tolower(string&);
+void tolower(std::string&);
 void saveFileContent();
 
 void hold_screen(int); // for ms

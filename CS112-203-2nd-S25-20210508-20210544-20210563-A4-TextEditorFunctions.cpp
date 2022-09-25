@@ -1,9 +1,15 @@
 #include "CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.h"
-
-
+#include <cstdio>
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <conio.h>
+#include <sstream>
+#include <vector>
 #include <regex>
 #include <chrono>
 #include <thread>
+using namespace std;
 
 string fileContent = ""; // initialization to avoid unexpected values
 string fileName;

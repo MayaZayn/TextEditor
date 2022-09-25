@@ -1,5 +1,6 @@
 #include "CS112-203-2nd-S25-20210508-20210544-20210563-A4-TextEditorFunctions.h"
-
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 int main() {
