@@ -193,32 +193,24 @@ void countLines() {
     cout << "Number of lines: " << nLines << endl;
 }
 
-void search();
-
 void searchWord() {
+    string wantedWord;
+    string temp = fileContent;
 
-    search(); 
-    return;
+    tolower(temp); // overloaded to work with std string
 
-    istringstream contentStream(fileContent); // fill a string stream with file contents
-    string wantedWord, word;
-
-    cout << "Enter a word to search for: ";
+    cout << "Enter the word you are searching for: ";
     cin >> wantedWord;
-    tolower(wantedWord); // overloaded to work with string
+    tolower(wantedWord);
 
-    while (!contentStream.fail()) { // until end of stream
+    regex wantedEx(wantedWord);
 
-        contentStream >> word; // stream will separate each insert with a space/newline
-        // so each word will be taken separately
-        tolower(word);
-        if (wantedWord == word) {
-            cout << "Word was found.\n";
-            return; // terminate function
-        }
-    }
+    if (regex_search(temp, wantedEx)) 
+        cout << "Word was found" << endl;
+    else
+        cout << "Word was not found" << endl;
 
-    cout << "Word was not found.\n";
+    return;
 }
 
 
@@ -310,24 +302,26 @@ string takeInput() {
 }
 
 
-
-
-
-
-void search()
+// this function is depricated, it's encouraged to use the new version
+void searchWord_old() 
 {
-    string wantedWord;
-    string temp = fileContent;
+    istringstream contentStream(fileContent); // fill a string stream with file contents
+    string wantedWord, word;
 
-    tolower(temp);
-
-    cout << "Enter the word you are searching for: ";
+    cout << "Enter a word to search for: ";
     cin >> wantedWord;
+    tolower(wantedWord); // overloaded to work with string
 
-    regex wordRegEx(wantedWord);
+    while (!contentStream.fail()) { // until end of stream
 
-    if (regex_search(temp, wordRegEx))
-        cout << "Word was found" << endl;
-    else
-        cout << "Word was not found" << endl;
+        contentStream >> word; // stream will separate each insert with a space/newline
+        // so each word will be taken separately
+        tolower(word);
+        if (wantedWord == word) {
+            cout << "Word was found.\n";
+            return; // terminate function
+        }
+    }
+
+    cout << "Word was not found.\n";
 }

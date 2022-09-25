@@ -29,6 +29,7 @@ void countWords();
 void countChars();
 void countLines();
 void searchWord();
+void searchWord_old(); // depricated 
 void wordCount();
 void allUpper();
 void tolowerFileContent();
