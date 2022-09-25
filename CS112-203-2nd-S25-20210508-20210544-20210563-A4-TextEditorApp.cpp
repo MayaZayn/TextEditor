@@ -36,7 +36,7 @@ int main() {
         allUpper, tolowerFileContent, firstUpper, saveFileContent
     };
 
-    while (true) { // THIS IS HOW TO REDUCE NUMBER OF LINES OF CODE!
+    while (true) {
         menu();
         cin.clear();
         cin >> option;
@@ -51,12 +51,12 @@ int main() {
             continue;
         }
 
-        (*menuFunctions[option])(); // THIS IS ELEGANCE!!!
+        (*menuFunctions[option])();
 
         std::cout << "\n-----------------------------";
         std::cout << "\nWhat else do you want to do?\n\n";
     }
-    std::cout << "Bye Bye User...\n"; // say bye bye
+    std::cout << "Bye Bye User...\n";
     // sleep(2);
     return 0;
 }
