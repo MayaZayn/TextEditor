@@ -36,4 +36,6 @@ void firstUpper();
 void tolower(string&);
 void saveFileContent();
 
+void hold_screen(int); // for ms
+
 #endif //MAIN_CPP_SOURCE_H

@@ -48,6 +48,7 @@ int main() {
 
         if (option < 1 || option > 15) {
             std::cout << "Wrong Input.\nTry Again.\n\n";
+            hold_screen(1500);
             continue;
         }
 
@@ -55,8 +56,9 @@ int main() {
 
         std::cout << "\n-----------------------------";
         std::cout << "\nWhat else do you want to do?\n\n";
+        hold_screen(2000);
     }
     std::cout << "Bye Bye User...\n";
-    // sleep(2);
+    hold_screen(3000);
     return 0;
 }

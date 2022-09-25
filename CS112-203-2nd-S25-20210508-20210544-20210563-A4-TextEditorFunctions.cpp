@@ -2,7 +2,8 @@
 
 
 #include <regex>
-
+#include <chrono>
+#include <thread>
 
 string fileContent = ""; // initialization to avoid unexpected values
 string fileName;
@@ -299,6 +300,11 @@ string takeInput() {
     cout << endl;
 
     return input;
+}
+
+void hold_screen(int dura) {
+    chrono::milliseconds duration{ dura };
+    this_thread::sleep_for(duration);
 }
 
 
