@@ -9,6 +9,8 @@
 #include <regex>
 #include <chrono>
 #include <thread>
+#include <iterator>
+#include <string>
 using namespace std;
 
 string fileContent = ""; // initialization to avoid unexpected values
@@ -278,33 +280,18 @@ void tolower(string& str) {
 }
 
 string takeInput() {
+    cin >> noskipws;
+    istream_iterator<char> itr{ cin };
+    
     string input;
-    char chr;
-    while (true) { // keep taking input until break
-        chr = (char)_getch();
-        if ((int)chr == 26) { // ascii of '^Z'
-            break;            // break on ctrl+z 
-        }
-        if ((int)chr == 8) { // ascii of Backspace
-            if (input.length() < 1 || input[input.length() - 1] == '\n') {
-                continue; // to avoid unwanted erasing
-            }
-            cout << '\b' << ' ' << '\b'; // '\b' pushes the cursor 1 step back
-            // and then ' ' erases the last character
-
-            input.pop_back(); // erase from actual input
-            continue;
-        }
-        if ((int)chr == 13) { // if input is a newline
-            cout << endl;     // print newline
-            input += '\n';    // add newline to input
-            continue;
-        }
-        input += chr;
-        cout << chr; // to display what _getch() have caught
+    for (; !cin.fail(); ++itr) {
+        if ((int)*itr == 26) // ascii of Ctrl+Z
+            break;
+        
+        input += *itr;
     }
-    cout << endl;
 
+    cin >> skipws; // return cin to default state
     return input;
 }
 
